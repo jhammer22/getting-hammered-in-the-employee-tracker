@@ -16,7 +16,7 @@ const db = mysql.createConnection(
     user: '',
   // MySQL password
     password: '',
-    database: 'employee_db';
+    database: 'employee_db',
   },
   console.log(`database connected use with care`)
 );
