@@ -8,20 +8,16 @@ require ('console.table')
 const db = mysql.createConnection(
   {
     host: 'localhost',
-    // MySQL username
+    
     user: 'root',
-  // MySQL password
+  
   // remove password before pushing
     password: '',
     database: 'employee_db',
   },
   console.log(`database connected use with care`)
 );
-// throwing db.connect is not a function
-// db.connect(
-//   console.log(`database connected use with care`)
-// );
-// console.log(db);
+
 async function startQuestions() {
   try {
     const question = await inquirer.prompt([{
@@ -35,9 +31,9 @@ async function startQuestions() {
       case 'View Departments':
         return viewDepartments();
         break;
-      // case 'Add Department':
-      //   return addDepartment();
-      //   break;
+      case 'Add Department':
+        return addDepartment();
+        break;
       case 'View Roles':
         return viewRole();
         break;
@@ -67,10 +63,6 @@ function viewDepartments() {
   // run startQuestions
 }; 
 
-//TODO: look at department schema use to ask user questions inquire(results) take results and turn into values to populate db do same thing for role
-// function addDepartment() {
-//   inquirer.prompt 
-// }
 
 function viewRole() {
   db.query('SELECT * FROM role', function (err, results) {
@@ -79,14 +71,35 @@ function viewRole() {
   });
 };
 
-function viewEmployees() {
+function viewEmployees(results) {
   db.query('SELECT * FROM employee', function (err, results) {
     // console.log(results)
     console.table(results)
     startQuestions();
   });
 };
+
+// look at department schema use to ask user questions inquire(results) take results and turn into values to populate db do same thing for role and employees
+function addDepartment() {
+  inquirer.prompt([{
+    type: 'input',
+    name: 'departmentAdd',
+    message: 'What kind of department would you like to add?',
+  }]).then(function(results) {
+    db.query('INSERT INTO department SET ?', {
+      name: results.name,
+    });
+    console.table(results);
+    startQuestions();
+  }); 
+};
+ //TODO write add employee and add role functions then try to use a switch case to call those functions based on department user choice
+
+
 startQuestions();
+
+
+
 
 
 
