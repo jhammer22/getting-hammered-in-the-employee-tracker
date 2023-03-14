@@ -12,7 +12,7 @@ const db = mysql.createConnection(
     user: 'root',
   
   // remove password before pushing
-    password: '',
+    password: 'Bunkbeds@2005',
     database: 'employee_db',
   },
   console.log(`database connected use with care`)
@@ -37,17 +37,17 @@ async function startQuestions() {
       case 'View Roles':
         return viewRole();
         break;
-      // case 'Add Role':
-      //   return addRole();
-      //   break;
+      case 'Add Role':
+        return addRole();
+        break;
       case 'View Employees':
         return viewEmployees();
         break;
-      // case 'Update Employee':
-      //   return updateEmployee();
-      //   break;
-      // default:
-      //   return finished();             
+      case 'Update Employee':
+        return updateEmployee();
+        break;
+      default:
+        return finished();             
     }
   } catch (err) {
     console.log(err)
@@ -56,11 +56,9 @@ async function startQuestions() {
 
 function viewDepartments() {
   db.query('SELECT * FROM department', function (err, results) {
-    // console.log(results)
     console.table(results)
     startQuestions();
   });
-  // run startQuestions
 }; 
 
 
@@ -73,30 +71,89 @@ function viewRole() {
 
 function viewEmployees(results) {
   db.query('SELECT * FROM employee', function (err, results) {
-    // console.log(results)
     console.table(results)
     startQuestions();
   });
 };
 
-// look at department schema use to ask user questions inquire(results) take results and turn into values to populate db do same thing for role and employees
-function addDepartment() {
+function addDepartment(results) {
   inquirer.prompt([{
     type: 'input',
     name: 'departmentAdd',
     message: 'What kind of department would you like to add?',
-  }]).then(function(results) {
+  }]).then(function(answers) {
     db.query('INSERT INTO department SET ?', {
-      name: results.name,
+      name: answers.name,
     });
     console.table(results);
     startQuestions();
   }); 
 };
- //TODO write add employee and add role functions then try to use a switch case to call those functions based on department user choice
 
+function addRole(results) {
+  inquirer.prompt([
+    {
+      name: 'title',
+      type: 'input',
+      message: 'Enter role name'
+    },
+    {
+      name: 'salary',
+      type: 'input',
+      message: 'Enter Salary'
+    },
+    {
+      name: 'department',
+      type: 'list',
+      message: 'Select department ID this role belongs to',
+      choices:  viewDepartments(),
+    }
+  ]).then(function(answers) {
+    db.query('INSERT INTO role SET ?', {
+      title: answers.title,
+      salary: answers.salary,
+      department_id: answers.viewDepartments(),
+    });
+    console.table(results);
+    startQuestions();
+  })
+};
+
+function addEmployee(results) {
+  inquirer.prompt([
+    {
+      name: 'first_name',
+      type: 'input',
+      message: 'Enter new employee first name'
+    },
+    {
+      name: 'last_name',
+      type: 'input',
+      message: 'Enter new employee last name'
+    },
+    {
+      name: 'role',
+      type: 'list',
+      message: 'Select new employees role',
+      choices: viewRole()
+    },
+  ]).then(function(answers) {
+    db.query('INSERT INTO employee SET ?', {
+      first_name: answers.first_name,
+      last_name: answers.last_name,
+      role: answers.viewRole(),
+    });
+    console.table(answers);
+    startQuestions();
+  })
+}
 
 startQuestions();
+
+function finished() {
+  console.log('All done');
+  process.exit();
+};
 
 
 
