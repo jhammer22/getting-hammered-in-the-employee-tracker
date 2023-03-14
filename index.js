@@ -24,7 +24,7 @@ async function startQuestions() {
       type: 'list',
       name: 'start',
       message: 'Make a selection to get started',
-      choices: ['View Departments', 'Add Department', 'View Roles', 'Add Role', 'View Employees', 'Update Employee', 'Update Employee Role', 'Finished']
+      choices: ['View Departments', 'Add Department', 'View Roles', 'Add Role', 'View Employees', 'Update Employee', 'Update Employee Role', 'Add Employee', 'Finished']
     }]);
     
     switch (question.start) {
@@ -47,6 +47,9 @@ async function startQuestions() {
         return updateEmployee();
         break;
       default:
+      case 'Add Employee':
+        return addEmployee();
+        break;
         return finished();             
     }
   } catch (err) {
@@ -83,7 +86,7 @@ function addDepartment(results) {
     message: 'What kind of department would you like to add?',
   }]).then(function(answers) {
     db.query('INSERT INTO department SET ?', {
-      name: answers.name,
+      name: answers.departmentAdd,
     });
     console.table(results);
     startQuestions();
@@ -119,7 +122,14 @@ function addRole(results) {
   })
 };
 
+
+
 function addEmployee(results) {
+  db.query('SELECT * FROM role', function (err, results) {
+      const roleChoices = results.map(result => {
+        return {name:result.title, value:result.id}
+      })
+ 
   inquirer.prompt([
     {
       name: 'first_name',
@@ -132,22 +142,22 @@ function addEmployee(results) {
       message: 'Enter new employee last name'
     },
     {
-      name: 'role',
+      name: 'role_id',
       type: 'list',
       message: 'Select new employees role',
-      choices: viewRole()
+      choices: roleChoices
     },
   ]).then(function(answers) {
     db.query('INSERT INTO employee SET ?', {
       first_name: answers.first_name,
       last_name: answers.last_name,
-      role: answers.viewRole(),
+      role_id: answers.role_id,
     });
     console.table(answers);
     startQuestions();
   })
+})
 }
-
 startQuestions();
 
 function finished() {
