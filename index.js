@@ -12,7 +12,7 @@ const db = mysql.createConnection(
     user: 'root',
   
   // remove password before pushing
-    password: 'Bunkbeds@2005',
+    password: '',
     database: 'employee_db',
   },
   console.log(`database connected use with care`)
@@ -94,7 +94,7 @@ function addDepartment(results) {
 };
 
 function addRole(results) {
-  
+
   inquirer.prompt([
     {
       name: 'title',

@@ -2,7 +2,14 @@
 
 ## User Story
 
-For this challenge our task was to create a interface that would allow a company to manage their employee's using Node.js, Inquirer and MySQL from scratch.
+For this challenge our task was to create a interface that would allow a company to manage their employee's using Node.js, Inquirer and MySQL.
+
+## Table Of Contents
+
+[Acceptance-Criteria] (#Acceptance-Criteria)
+[Languages-and-Tools] (#Languages-and-Tools)
+[Installation-and-Usage] (#Installation-and-Usage)
+[License] (#License)
 
 ## Acceptance Criteria
 
@@ -39,3 +46,20 @@ For this challenge our task was to create a interface that would allow a company
 **WHEN** I choose to update an employee role
 
 **THEN** I am prompted to select an employee to update and their new role and this information is updated in the database
+
+## Languages and Tools
+
+<img align="left" width="40px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg">
+<img align="left" width="40px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-plain-wordmark.svg">
+<img align="left" width="40px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg">
+<img align="left" width="40px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg">
+<img align="left" width="40px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg">
+<img align="left" width="40px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg">
+<img align="left" width="40px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg">
+<img align="left" width="40px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualstudio/visualstudio-plain.svg">
+
+
+## Installation and Usage
+
+## License
+
