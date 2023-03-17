@@ -94,6 +94,7 @@ function addDepartment(results) {
 };
 
 function addRole(results) {
+  
   inquirer.prompt([
     {
       name: 'title',
@@ -105,17 +106,11 @@ function addRole(results) {
       type: 'input',
       message: 'Enter Salary'
     },
-    {
-      name: 'department',
-      type: 'list',
-      message: 'Select department ID this role belongs to',
-      choices:  viewDepartments(),
-    }
+    
   ]).then(function(answers) {
     db.query('INSERT INTO role SET ?', {
       title: answers.title,
       salary: answers.salary,
-      department_id: answers.viewDepartments(),
     });
     console.table(results);
     startQuestions();
