@@ -9,7 +9,7 @@ For this challenge our task was to create a interface that would allow a company
 [Acceptance-Criteria] (#Acceptance-Criteria)
 [Languages-and-Tools] (#Languages-and-Tools)
 [Installation-and-Usage] (#Installation-and-Usage)
-[Submittion-Video-Link] (#Submittion-Video-Link)
+[Submission-Video-Link] (#Submission-Video-Link)
 [License] (#License)
 
 ## Acceptance Criteria
@@ -62,7 +62,7 @@ npm run seed
 npm run develop 
 ```
 
-## Submittion Video Link
+## Submission Video Link
 
 
 ## License
