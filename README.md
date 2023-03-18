@@ -9,6 +9,7 @@ For this challenge our task was to create a interface that would allow a company
 [Acceptance-Criteria] (#Acceptance-Criteria)
 [Languages-and-Tools] (#Languages-and-Tools)
 [Installation-and-Usage] (#Installation-and-Usage)
+[Submittion-Video-Link] (#Submittion-Video-Link)
 [License] (#License)
 
 ## Acceptance Criteria
@@ -60,6 +61,21 @@ For this challenge our task was to create a interface that would allow a company
 
 
 ## Installation and Usage
+
+  To run this application you need to run this:
+
+
+```
+npm i
+
+npm run seed
+
+npm run develop 
+```
+
+## Submittion Video Link
+
+
 
 ## License
 
