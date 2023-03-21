@@ -43,14 +43,16 @@ async function startQuestions() {
       case 'View Employees':
         return viewEmployees();
         break;
-      case 'Update Employee':
-        return updateEmployee();
-        break;
+      // case 'Update Employee':
+      //   return updateEmployee();
+      //   break;
       default:
       case 'Add Employee':
         return addEmployee();
         break;
-        return finished();             
+      case 'Finished':
+        return finished();
+        break;             
     }
   } catch (err) {
     console.log(err)
